@@ -72,15 +72,14 @@ function CreateCardTypes(){
         data.foodiesPointsPercentages /= 100;
         data.cardName = data.cardName + " " +data.cardType;
 
-        // alert(localStorage.getItem("Token"));
+        // alert(appState.jwt);
 
 
-        const api = 'https://localhost:8083/api/v0.1/CardTypes';
+        const api = process.env.REACT_APP_CREATE_CARD_TYPE_URL;
 
         const headers = {
             'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': localStorage.getItem("Token")
-        }
+            'Authorization': `Bearer ${appState.jwt}` }
 
         axios.post(api,JSON.stringify(data, null, 4),{headers:headers}).then(
 
@@ -92,8 +91,14 @@ function CreateCardTypes(){
                 }
             })
             .catch((error) => {
-                appDispatch({ type: "flashErrorMessages", value: `Sorry, a card type called ${data.cardName} already exists.` })
+                if(error.toString()==='Error: Request failed with status code 500')
+                {
+                    appDispatch({ type: "flashErrorMessages", value: `Sorry, a card type called ${data.accountName} already exists.` })
 
+                }else if(error.toString()==='Error: Request failed with status code 403')
+                {
+                    appDispatch({ type: "flashErrorMessages", value: `Authentication went wrong.` })
+                }
             }
         )
     }

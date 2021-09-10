@@ -72,14 +72,14 @@ function CreateLoanTypes(){
         data.interestRate /= 100;
         data.loanName = data.loanName + " " +data.loanType;
 
-        // alert(localStorage.getItem("Token"));
+        // alert(appState.jwt);
 
 
-        const api = 'https://localhost:8084/api/v0.1/LoanTypes';
+        const api = process.env.REACT_APP_CREATE_LOAN_TYPE_URL;
 
         const headers = {
             'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': localStorage.getItem("Token")
+            'Authorization': `Bearer ${appState.jwt}`
         }
 
         axios.post(api,JSON.stringify(data, null, 4),{headers:headers}).then(
@@ -92,8 +92,14 @@ function CreateLoanTypes(){
                 }
             })
             .catch((error) => {
-                    appDispatch({ type: "flashErrorMessages", value: `Sorry, a card type called ${data.loanName} already exists.` })
+                if(error.toString()==='Error: Request failed with status code 500')
+                {
+                    appDispatch({ type: "flashErrorMessages", value: `Sorry, a loan type called ${data.loanName} already exists.` })
 
+                }else if(error.toString()==='Error: Request failed with status code 403')
+                {
+                    appDispatch({ type: "flashErrorMessages", value: `Authentication went wrong.` })
+                }
                 }
             )
     }

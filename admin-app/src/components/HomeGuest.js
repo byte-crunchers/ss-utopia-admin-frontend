@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 
 
 
+
 function HomeGuest(props) {
 
     const appDispatch = useContext(DispatchContext)
@@ -33,29 +34,31 @@ function HomeGuest(props) {
 
 
     async function onSubmit(data) {
-        alert(JSON.stringify(data, null, 4))
 
-        const api = 'https://34.238.82.58:8443/login'
 
+        const api = process.env.REACT_APP_LOGGIN_AUTH_URL;
+
+        // alert(api)
+        let user = JSON.stringify({ "username": `${data.username}` , "password":`${data.password}` }, null, 4)
         try {
-            const response = await Axios.post(api, JSON.stringify(data, null, 4))
+            const response = await Axios.post(api, user)
 
             if (response.headers) {
                 const header = response.headers
                 const token = header['authorization'];
                 appDispatch({ type: "login", data: token})
                 appDispatch({ type: "flashMessage", value: "You have successfully logged in." })
-                localStorage.setItem("Token",token)
-                props.history.push("admin/CreateCardType");
+                // alert(token)
+                console.log(appState.jwt)
+                // localStorage.setItem("Token",token)
+                props.history.push("admin/home");
             } else {
 
                 console.log("Incorrect username / password.")
                 appDispatch({ type: "flashErrorMessages", value: "Invalid username / password." })
             }
         }catch (e) {
-            if(username||password === null){
-                appDispatch({ type: "flashErrorMessages", value: "username / password can't be null." })
-            }
+
             appDispatch({ type: "flashErrorMessages", value: "Invalid username / password." })
             console.log("There was a problem.")
         }
@@ -87,7 +90,7 @@ function HomeGuest(props) {
                                <label htmlFor="password" className="text-muted mb-1">
                                    {/*<small>Password</small>*/}
                                </label>
-                               <input onChange={(e) => setUsername(e.target.value)}  {...register('password')} id="password" name="password" className={`form-control ${errors.password ? 'is-invalid' : ''}`} type="password"
+                               <input onChange={(e) => setPassword(e.target.value)}  {...register('password')} id="password" name="password" className={`form-control ${errors.password ? 'is-invalid' : ''}`} type="password"
                                       placeholder="Password" autoComplete="off"/>
                                <div className="invalid-feedback">{errors.password?.message}</div>
 

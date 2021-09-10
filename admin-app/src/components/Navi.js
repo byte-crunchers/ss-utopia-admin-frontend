@@ -26,10 +26,10 @@ function Navi(props){
             <Navbar.Toggle className="coloring" />
             <Navbar.Collapse>
                 <Nav>
-                    <Nav.Link href="/">UtopiaAdmin</Nav.Link>
+                    <Nav.Link href="/admin/home">UtopiaAdmin</Nav.Link>
 
                     <NavDropdown title="Account  ">
-                        <NavDropdown.Item to="#products/tea">Create New Account Type</NavDropdown.Item>
+                        <NavDropdown.Item href="/admin/CreateAccountType">Create New Account Type</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#products/promo">Create New Promo</NavDropdown.Item>
                     </NavDropdown>
