@@ -19,49 +19,49 @@ function CreateAccountTypes(){
             .required('Account type is required'),
         accountName: Yup.string()
             .required('Account Name is required')
-            .min(2, 'Account Name must be more than two characters !')
-            .max(20, 'Account Name must be less than twenty characters !')
+            .min(2, 'Account Name must at least contains three characters !')
+            .max(20, 'Account Name must at most contains twenty characters !')
             .test('alphabets', 'Account Name must only contain alphabets !', (value) => {
                 return /^[a-zA-Z ]+$/.test(value);
             }),
 
         fee: Yup.number()
             .typeError("Fee must only contain digits !")
-            .min(1, 'Fee must be more than 1 dollars !')
-            .max(9999, 'Fee must be less than 9999 dollars !')
+            .min(1, 'Fee must be equal to or more than 1 dollars !')
+            .max(9999, 'Fee must be equal to or less than 9999 dollars !')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v) ,
 
         apy: Yup.number()
             .typeError("APY must only contain digits !")
-            .min(1, 'APY must be more than 1% !')
-            .max(10, 'APY must be less than 10% !')
+            .min(1, 'APY must be equal to or more than 1% !')
+            .max(10, 'APY must be equal to or less than 10% !')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v),
 
         taxes: Yup.number()
             .typeError("taxes percentages must only contain digits !")
-            .min(2, 'taxes percentages must be more than 2% !')
-            .max(45, 'taxes percentages must be more than 45% !')
+            .min(2, 'taxes percentages must be equal to or more than 2% !')
+            .max(45, 'taxes percentages must be equal to or more than 45% !')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v),
         contributionLimits: Yup.number()
             .typeError("Contribution limit must only contain digits !")
-            .min(100, 'Contribution limit must be more than 100 !')
-            .max(7000, 'Contribution limit must be less than 7000 !')
+            .min(100, 'Contribution limit must be equal to or more than 100 !')
+            .max(7000, 'Contribution limit must be equal to or less than 7000 !')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v),
         withdrawalLimits: Yup.number()
             .typeError("withdrawal Limit must only contain digits !")
-            .min(1, 'withdrawal Limit must be more than 1 !')
-            .max(8, 'withdrawal Limit must be less than 8 !')
+            .min(1, 'withdrawal Limit must be equal to or more than 1 !')
+            .max(8, 'withdrawal Limit must be equal to or less than 8 !')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v),
 
         withdrawalAgeLimits: Yup.number()
             .typeError("withdrawal Age Limit must only contain digits !")
-            .min(50, 'withdrawal Age Limit must be more than 50 !')
-            .max(100, 'withdrawal Age Limit must be less than 100 !')
+            .min(50, 'withdrawal Age Limit must be equal to or more than 50 !')
+            .max(100, 'withdrawal Age Limit must be equal to or less than 100 !')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v)
 
@@ -91,7 +91,7 @@ function CreateAccountTypes(){
 
             (response) => {
                 if(response.status ===201){
-                    appDispatch({ type: "flashMessage", value: "Congrats, you created a new account type." })
+                    appDispatch({ type: "flashMessage", value: `Congrats, you created a new loan type called ${data.accountName}.`})
                     console.log("New new account type was created.")
                     // window.location.reload();
                 }else if(response.status === 500){

@@ -20,7 +20,12 @@ function HomeGuest(props) {
 
     const validationSchema = Yup.object().shape({
         username : Yup.string()
-            .required('Username is required'),
+            .required('Username is required')
+            .min(3, 'username must at least contains three characters !')
+            .max(20, 'Card Name must be less than twenty characters !')
+            .test('alphabets', 'Card Name must only contain alphabets !', (value) => {
+                return /^[a-zA-Z0-9 ]+$/.test(value);
+            }),
 
         password: Yup.string()
             .required('Password is required'),
@@ -52,14 +57,10 @@ function HomeGuest(props) {
                 console.log(appState.jwt)
                 // localStorage.setItem("Token",token)
                 props.history.push("admin/home");
-            } else {
-
-                console.log("Incorrect username / password.")
-                appDispatch({ type: "flashErrorMessages", value: "Invalid username / password." })
             }
         }catch (e) {
-
-            appDispatch({ type: "flashErrorMessages", value: "Invalid username / password." })
+            if(e.toString()==='Error: Request failed with status code 401')
+            appDispatch({ type: "flashErrorMessages", value: `Username / Password is invalid.` })
             console.log("There was a problem.")
         }
 

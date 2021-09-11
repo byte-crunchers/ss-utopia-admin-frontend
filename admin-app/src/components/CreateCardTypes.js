@@ -19,42 +19,42 @@ function CreateCardTypes(){
             .required('Card type is required'),
         cardName: Yup.string()
             .required('Card Name is required')
-            .min(2, 'Card Name must be more than two characters !')
-            .max(20, 'Card Name must be less than twenty characters !')
+            .min(2, 'Card Name must at least contains three characters !')
+            .max(20, 'Card Name must at most contains twenty characters !')
             .test('alphabets', 'Card Name must only contain alphabets !', (value) => {
                 return /^[a-zA-Z ]+$/.test(value);
             }),
 
         annualFee: Yup.number()
             .typeError("Annual Fee must only contain digits !")
-            .min(50, 'Annual fee must be more than 50 dollars !')
-            .max(9999, 'Annual fee must be less than 9999 dollars !')
+            .min(50, 'Annual fee must be equal to or more than 50 dollars !')
+            .max(9999, 'Annual fee must be equal to or less than 9999 dollars !')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v) ,
 
         apr: Yup.number()
             .typeError("APR must only contain digits !")
-            .min(10, 'APR must be more than 10% !')
-            .max(50, 'APR must be less than 50% !')
+            .min(10, 'APR must be equal to or more than 10% !')
+            .max(50, 'APR must be equal to or less than 50% !')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v),
 
         cashBack: Yup.number()
             .typeError("Cash Back percentages must only contain digits !")
-            .min(1, 'Cash Back percentages must be more than 1% !')
-            .max(7, 'Cash Back percentages must be more than 7% !')
+            .min(1, 'Cash Back percentages must be equal to or more than 1% !')
+            .max(7, 'Cash Back percentages must be equal to or more than 7% !')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v),
         foodiesPointsPercentages: Yup.number()
             .typeError("Foodies Points Percentages must only contain digits !")
-            .min(3, 'Foodies Points Percentages must be more than 3% !')
-            .max(8, 'Foodies Points Percentages must be less than 8% !')
+            .min(3, 'Foodies Points Percentages must be equal to or more than 3% !')
+            .max(8, 'Foodies Points Percentages must be equal to or less than 8% !')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v),
         lateFee: Yup.number()
             .typeError("Late fee must only contain digits !")
-            .min(20, 'Late fee must be more than 20 dollars !')
-            .max(100, 'Late fee must be less than 100 dollars !')
+            .min(20, 'Late fee must be equal to or more than 20 dollars !')
+            .max(100, 'Late fee must be equal to or less than 100 dollars !')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v)
 
@@ -85,7 +85,7 @@ function CreateCardTypes(){
 
             (response) => {
                 if(response.status ===201){
-                    appDispatch({ type: "flashMessage", value: "Congrats, you created a new card type." })
+                    appDispatch({ type: "flashMessage", value: `Congrats, you created a new card type called ${data.cardName}.` })
                     console.log("New new card type was created.")
                     // window.location.reload();
                 }
@@ -93,7 +93,7 @@ function CreateCardTypes(){
             .catch((error) => {
                 if(error.toString()==='Error: Request failed with status code 500')
                 {
-                    appDispatch({ type: "flashErrorMessages", value: `Sorry, a card type called ${data.accountName} already exists.` })
+                    appDispatch({ type: "flashErrorMessages", value: `Sorry, a card type called ${data.cardName} already exists.` })
 
                 }else if(error.toString()==='Error: Request failed with status code 403')
                 {
