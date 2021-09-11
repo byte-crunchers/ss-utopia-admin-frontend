@@ -22,8 +22,8 @@ function CreateLoanTypes(){
 
         loanName: Yup.string()
             .required('Loan Name is required')
-            .min(2, 'Loan Name must be more than two characters !')
-            .max(20, 'Loan Name must be less than twenty characters !')
+            .min(2, 'Loan Name must at least contains three characters !')
+            .max(20, 'Loan Name must at most contains twenty characters !')
             .test('alphabets', 'Card Name must only contain alphabets !', (value) => {
                 return /^[a-zA-Z ]+$/.test(value);
             }),
@@ -31,32 +31,32 @@ function CreateLoanTypes(){
         yrsTerms: Yup.number()
             .required('Years Terms is required')
             .typeError("Years Terms must only contain digits !")
-            .min(0.12, 'Years Terms must be more than 50 dollars !')
-            .max(9999, 'Years Terms must be less than 9999 dollars !'),
+            .min(0.12, 'Years Terms must be equal to or more than 0.12 year !')
+            .max(99, 'Years Terms must be equal to or less than 99 years !'),
             // .nullable(true /* or false */)
             // .transform((v, o) => o === '' ? null : v) ,
 
         principal: Yup.number()
             .required('Principal is required')
             .typeError("Principal must only contain digits !")
-            .min(500, 'Principal must be more than 10% !')
-            .max(5000000, 'Principal must be less than 50% !'),
+            .min(500, 'Principal must be equal to or more than 500 dollars !')
+            .max(5000000, 'Principal must be equal to or less than 500000 dollars !'),
             // .nullable(true /* or false */)
             // .transform((v, o) => o === '' ? null : v),
 
         interestRate: Yup.number()
             .required('Interest Rate is required')
             .typeError("Interest Rate must only contain digits !")
-            .min(2, 'Interest Rate must be more than 1% !')
-            .max(50, 'Interest Rate must be more than 7% !'),
+            .min(2, 'Interest Rate must be equal to or more than 2% !')
+            .max(50, 'Interest Rate must be equal to or more than 50% !'),
             // .nullable(true /* or false */)
             // .transform((v, o) => o === '' ? null : v),
 
         installmentPayments: Yup.number()
             .required('Installment Payments is required')
             .typeError("Installment Payments must only contain digits !")
-            .min(50, 'Installment Payments must be more than 20 dollars !')
-            .max(5000000, 'Installment Payments must be less than 100 dollars !')
+            .min(50, 'Installment Payments must be equal to or more than 20 dollars !')
+            .max(5000000, 'Installment Payments must be equal to or less than 5000000 dollars !')
             // .nullable(true /* or false */)
             // .transform((v, o) => o === '' ? null : v)
 
@@ -86,7 +86,7 @@ function CreateLoanTypes(){
 
             (response) => {
                 if(response.status ===201){
-                    appDispatch({ type: "flashMessage", value: "Congrats, you created a new loan type." })
+                    appDispatch({ type: "flashMessage", value: `Congrats, you created a new loan type called ${data.loanName}.` })
                     console.log("New new loan type was created.")
                     // window.location.reload();
                 }
