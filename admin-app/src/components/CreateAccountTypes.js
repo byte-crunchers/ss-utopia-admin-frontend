@@ -91,7 +91,7 @@ function CreateAccountTypes(){
 
             (response) => {
                 if(response.status ===201){
-                    appDispatch({ type: "flashMessage", value: `Congrats, you created a new loan type called ${data.accountName}.`})
+                    appDispatch({ type: "flashMessage", value: `Congrats, you created a new account type called ${data.accountName}.`})
                     console.log("New new account type was created.")
                     // window.location.reload();
                 }else if(response.status === 500){

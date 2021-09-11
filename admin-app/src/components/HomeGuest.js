@@ -22,7 +22,7 @@ function HomeGuest(props) {
         username : Yup.string()
             .required('Username is required')
             .min(3, 'username must at least contains three characters !')
-            .max(20, 'Card Name must be less than twenty characters !')
+            .max(20, 'Card Name must at most contains twenty characters !')
             .test('alphabets', 'Card Name must only contain alphabets !', (value) => {
                 return /^[a-zA-Z0-9 ]+$/.test(value);
             }),
