@@ -24,8 +24,9 @@ pipeline {
           stage('Build') {
             steps {
                   
-                    sh 'docker build . -t jbnilles/ss-utopia-admin-frontend:latest'
-
+              dir('admin-app'){
+                sh 'docker build . -t jbnilles/ss-utopia-admin-frontend:latest'
+              }
                  
             }
         }
