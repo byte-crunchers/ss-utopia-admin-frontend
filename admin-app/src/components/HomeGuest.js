@@ -54,7 +54,9 @@ function HomeGuest(props) {
                 appDispatch({ type: "login", data: token})
                 appDispatch({ type: "flashMessage", value: "You have successfully logged in." })
                 // alert(token)
+                console.log(response)
                 console.log(appState.jwt)
+
                 // localStorage.setItem("Token",token)
                 props.history.push("admin/home");
             }

@@ -29,24 +29,21 @@ function CreateLoanTypes(){
             }),
 
         yrsTerms: Yup.number()
-            .required('Years Terms is required')
-            .typeError("Years Terms must only contain digits !")
-            .min(0.12, 'Years Terms must be equal to or more than 0.12 year !')
-            .max(99, 'Years Terms must be equal to or less than 99 years !'),
-            // .nullable(true /* or false */)
-            // .transform((v, o) => o === '' ? null : v) ,
+            .required('Year Terms is required')
+            .typeError("Please enter a valid number (digit only) ")
+            .min(0.12, 'Year Terms must be equal to or more than 0.12 !')
+            .max(70, 'Year Terms must be equal to or less than 70 !'),
 
         principal: Yup.number()
             .required('Principal is required')
-            .typeError("Principal must only contain digits !")
+            .typeError("Please enter a valid number (digit only)")
             .min(500, 'Principal must be equal to or more than 500 dollars !')
             .max(5000000, 'Principal must be equal to or less than 500000 dollars !'),
-            // .nullable(true /* or false */)
-            // .transform((v, o) => o === '' ? null : v),
+
 
         interestRate: Yup.number()
             .required('Interest Rate is required')
-            .typeError("Interest Rate must only contain digits !")
+            .typeError("Please enter a valid number (digit only)")
             .min(2, 'Interest Rate must be equal to or more than 2% !')
             .max(50, 'Interest Rate must be equal to or more than 50% !'),
             // .nullable(true /* or false */)
@@ -54,7 +51,7 @@ function CreateLoanTypes(){
 
         installmentPayments: Yup.number()
             .required('Installment Payments is required')
-            .typeError("Installment Payments must only contain digits !")
+            .typeError("Installment Payments is required")
             .min(50, 'Installment Payments must be equal to or more than 20 dollars !')
             .max(5000000, 'Installment Payments must be equal to or less than 5000000 dollars !')
             // .nullable(true /* or false */)
@@ -71,8 +68,7 @@ function CreateLoanTypes(){
         //display form data on success
         data.interestRate /= 100;
         data.loanName = data.loanName + " " +data.loanType;
-
-        // alert(appState.jwt);
+        data.installmentPayments = document.getElementById('installmentPayments').value
 
 
         const api = process.env.REACT_APP_CREATE_LOAN_TYPE_URL;
@@ -103,6 +99,34 @@ function CreateLoanTypes(){
                 }
             )
     }
+
+
+    function calculate() {
+        const amount = document.getElementById('principal');
+        const apr = document.getElementById('interestRate');
+        const yrs = document.getElementById('yrsTerms');
+
+
+
+
+        const principal = parseFloat(amount.value);
+        const interest = parseFloat(apr.value) / 100 / 12;
+        const payments = parseFloat(yrs.value) * 12;
+
+
+        const x = Math.pow(1 + interest, payments);
+        let installmentPayments = (principal * x * interest) / (x - 1);
+
+
+        if (isFinite(installmentPayments)){
+             installmentPayments = installmentPayments.toFixed(2)
+        }
+
+        document.getElementById('installmentPayments').value =  installmentPayments
+
+    }
+
+
 
     return(
 
@@ -142,7 +166,7 @@ function CreateLoanTypes(){
                         </div>
                         <div className="form-group col-3">
                             <label>Principal</label>
-                            <input name="principal" type="text" {...register('principal')} placeholder="Enter principal (required)" className={`form-control ${errors.principal ? 'is-invalid' : ''}`} />
+                            <input id='principal' name="principal" type="text" {...register('principal')} placeholder="Enter principal (required)" className={`form-control ${errors.principal ? 'is-invalid' : ''}`} />
 
                             <div className="invalid-feedback">{errors.principal?.message}</div>
                         </div>
@@ -151,21 +175,24 @@ function CreateLoanTypes(){
 
                         <div className="form-group col-3">
                             <label>Interest Rate(%)</label>
-                            <input name="interestRate" type="text" {...register('interestRate')} placeholder="Enter Interest Rate(%) (required)" className={`form-control ${errors.interestRate ? 'is-invalid' : ''}`} />
+                            <input id= "interestRate" name="interestRate" type="text" {...register('interestRate')} placeholder="Enter Interest Rate(%) (required)" className={`form-control ${errors.interestRate ? 'is-invalid' : ''}`} />
                             <div className="invalid-feedback">{errors.interestRate?.message}</div>
                         </div>
                     </div>
 
                     <div className="form-group col-3">
                         <label>Years terms</label>
-                        <input name="yrsTerms" type="text" {...register('yrsTerms')} placeholder="Enter years terms (required)" className={`form-control ${errors.yrsTerms ? 'is-invalid' : ''}`} />
+                        <input id= "yrsTerms" name="yrsTerms" type="text" {...register('yrsTerms')} placeholder="Enter years terms (required)" className={`form-control ${errors.yrsTerms ? 'is-invalid' : ''}`} />
                         <div className="invalid-feedback">{errors.yrsTerms?.message}</div>
                     </div>
 
                     <div className="form-group col-3">
                         <label>Installment Payments</label>
-                        <input name="installmentPayments" type="text" {...register('installmentPayments')} placeholder="Enter Installment Payments (required)" className={`form-control ${errors.installmentPayments ? 'is-invalid' : ''}`} />
+                        <input id= "installmentPayments" name="installmentPayments" type="text" {...register('installmentPayments')} readOnly placeholder="Click below" className={`form-control ${errors.installmentPayments ? 'is-invalid' : ''}`} />
                         <div className="invalid-feedback">{errors. installmentPayments?.message}</div>
+                        <br/>
+                        <button type="button" className="btn btn-secondary btn-sm"  onClick={() => calculate()}>Calculate</button>
+
                     </div>
 
                     <div className="form-group">
