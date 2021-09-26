@@ -15,53 +15,46 @@ function CreateAccountTypes(){
     const appState = useContext(StateContext)
 
     const validationSchema = Yup.object().shape({
-        accounttype: Yup.string()
-            .required('Account type is required'),
         accountName: Yup.string()
-            .required('Account Name is required')
-            .min(2, 'Account Name must at least contains three characters !')
-            .max(20, 'Account Name must at most contains twenty characters !')
-            .test('alphabets', 'Account Name must only contain alphabets !', (value) => {
+            .required('Required')
+            .min(2, 'Must have at least 2 characters')
+            .max(20, 'Must have at most 20 characters')
+            .test('alphabets', 'Must only letters', (value) => {
                 return /^[a-zA-Z ]+$/.test(value);
             }),
 
         fee: Yup.number()
-            .typeError("Fee must only contain digits !")
-            .min(1, 'Fee must be equal to or more than 1 dollars !')
-            .max(9999, 'Fee must be equal to or less than 9999 dollars !')
+            .typeError("Must only contain numbers")
+            .min(0, 'Must be equal or greater than $0')
+            .max(9999, 'Must be less than or equal to $9999')
+            .nullable(true /* or false */)
+            .transform((v, o) => o === '' ? null : v) ,
+
+        late: Yup.number()
+            .typeError("Must only contain numbers")
+            .min(0, 'Must be equal or greater than $0')
+            .max(9999, 'Must be less than or equal to $9999')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v) ,
 
         apy: Yup.number()
-            .typeError("APY must only contain digits !")
-            .min(1, 'APY must be equal to or more than 1% !')
-            .max(10, 'APY must be equal to or less than 10% !')
+            .typeError("Must only contain numbers")
+            .min(-10, 'Must be equal or greater than -10%')
+            .max(20, 'Must be less than or equal to 20%')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v),
 
-        taxes: Yup.number()
-            .typeError("taxes percentages must only contain digits !")
-            .min(2, 'taxes percentages must be equal to or more than 2% !')
-            .max(45, 'taxes percentages must be equal to or more than 45% !')
-            .nullable(true /* or false */)
-            .transform((v, o) => o === '' ? null : v),
-        contributionLimits: Yup.number()
-            .typeError("Contribution limit must only contain digits !")
-            .min(100, 'Contribution limit must be equal to or more than 100 !')
-            .max(7000, 'Contribution limit must be equal to or less than 7000 !')
-            .nullable(true /* or false */)
-            .transform((v, o) => o === '' ? null : v),
-        withdrawalLimits: Yup.number()
-            .typeError("withdrawal Limit must only contain digits !")
-            .min(1, 'withdrawal Limit must be equal to or more than 1 !')
-            .max(8, 'withdrawal Limit must be equal to or less than 8 !')
+        cash: Yup.number()
+            .typeError("Must only contain numbers")
+            .min(0, 'Must be equal or greater than 0%')
+            .max(5, 'Must be less than or equal to 5%')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v),
 
-        withdrawalAgeLimits: Yup.number()
-            .typeError("withdrawal Age Limit must only contain digits !")
-            .min(50, 'withdrawal Age Limit must be equal to or more than 50 !')
-            .max(100, 'withdrawal Age Limit must be equal to or less than 100 !')
+        foodie: Yup.number()
+            .typeError("Must only contain numbers")
+            .min(0, 'Must be equal or greater than 0%')
+            .max(5, 'Must be less than or equal to 5%')
             .nullable(true /* or false */)
             .transform((v, o) => o === '' ? null : v)
 
@@ -120,51 +113,41 @@ function CreateAccountTypes(){
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-col">
                         <div className="form-group col-3">
-                            <label >Account Types&nbsp;&nbsp;</label>
-                            <select   name="caccounttype" {...register('accounttype')} className={`form-control ${errors.accounttype ? 'is-invalid' : ''}`}>
-                                <option value="" selected disabled>Please select an account type (required)</option>
-                                <option value="Checking">Checking</option>
-                                <option value="Saving">Saving</option>
-                                <option value="IRA">IRA</option>
-                                <option value="Investing">Investing</option>
-                            </select>
-                            <div className="invalid-feedback">{errors.accounttype?.message}</div>
-                        </div>
-                        <div className="form-group col-3">
                             <label >Account Name</label>
-                            <input  name="accountName" type="text" {...register('accountName')} placeholder="Enter an Account Name (required)" className={`form-control ${errors.accountName ? 'is-invalid' : ''}`} />
+                            <input  name="accountName" type="text" {...register('accountName')} placeholder="Account Name" className={`form-control ${errors.accountName ? 'is-invalid' : ''}`} />
                             <div className="invalid-feedback">{errors.accountName?.message}</div>
                         </div>
                         <div className="form-group col-3">
-                            <label>Fee</label>
-                            <input name="fee" type="text" {...register('fee')} placeholder="Enter Fee (optional)" className={`form-control ${errors.fee ? 'is-invalid' : ''}`} />
+                            <label>Annual Fee</label>
+                            <input name="fee" type="text" {...register('fee')} placeholder="Annual Fee" className={`form-control ${errors.fee ? 'is-invalid' : ''}`} />
 
                             <div className="invalid-feedback">{errors.fee?.message}</div>
                         </div>
+                        <div className="form-group col-3">
+                            <label>Late Fee</label>
+                            <input name="late" type="text" {...register('late')} placeholder="Late Fee" className={`form-control ${errors.late ? 'is-invalid' : ''}`} />
+
+                            <div className="invalid-feedback">{errors.late?.message}</div>
+                        </div>
                     </div>
                     <div className="form-col">
-
                         <div className="form-group col-3">
                             <label>APY(%)</label>
-                            <input name="apy" type="text" {...register('apy')} placeholder="Enter APY(%) (optional)" className={`form-control ${errors.apy ? 'is-invalid' : ''}`} />
+                            <input name="apy" type="text" {...register('apy')} placeholder="APY(%)" className={`form-control ${errors.apy ? 'is-invalid' : ''}`} />
                             <div className="invalid-feedback">{errors.apy?.message}</div>
                         </div>
                     </div>
 
                     <div className="form-group col-3">
-                        <label> Taxes Percentages(%)</label>
-                        <input name="taxes" type="text" {...register('taxes')} placeholder="Enter Taxes Percentages(%) (optional)" className={`form-control ${errors.taxes ? 'is-invalid' : ''}`} />
-                        <div className="invalid-feedback">{errors.taxes?.message}</div>
+                        <label> Cash Back(%)</label>
+                        <input name="cash" type="text" {...register('cash')} placeholder="Cash Back(%)" className={`form-control ${errors.cash ? 'is-invalid' : ''}`} />
+                        <div className="invalid-feedback">{errors.cash?.message}</div>
                     </div>
+
                     <div className="form-group col-3">
-                        <label>Contribution Limit</label>
-                        <input name="contributionLimits" type="text" {...register('contributionLimits')} placeholder="Enter Contribution Limit (optional)" className={`form-control ${errors.contributionLimits ? 'is-invalid' : ''}`} />
-                        <div className="invalid-feedback">{errors.contributionLimits?.message}</div>
-                    </div>
-                    <div className="form-group col-4">
-                        <label>Withdrawal Age Limit</label>
-                        <input  name="withdrawalAgeLimits" type="text" {...register('withdrawalAgeLimits')} placeholder="Enter Withdrawal Age Limit (optional)" className={`form-control ${errors.withdrawalAgeLimits ? 'is-invalid' : ''}`} />
-                        <div className="invalid-feedback">{errors.withdrawalAgeLimits?.message}</div>
+                        <label> Foodie Points(%)</label>
+                        <input name="foodie" type="text" {...register('foodie')} placeholder="Foodie Points(%)" className={`form-control ${errors.foodie ? 'is-invalid' : ''}`} />
+                        <div className="invalid-feedback">{errors.foodie?.message}</div>
                     </div>
 
                     <div className="form-group">
