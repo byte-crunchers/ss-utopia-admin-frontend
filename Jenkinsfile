@@ -9,7 +9,6 @@ pipeline {
       }
         
         stage("SonarQube analysis") {
-            agent any
             steps {
               withSonarQubeEnv('SonarQube') {
                 dir('admin-app'){
