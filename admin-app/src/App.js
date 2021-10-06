@@ -4,7 +4,6 @@ import HomeGuest from "./components/HomeGuest";
 import About from "./components/About";
 import Terms from "./components/Terms";
 
-import CreateCardTypes from "./components/CreateCardTypes";
 import {BrowserRouter,Switch,Route} from "react-router-dom";
 import './App.css';
 import StateContext from "./StateContext"
@@ -15,9 +14,13 @@ import FlashMessages from "./components/FlashMessages";
 import FlashErrorMessages from "./components/FlashErrorMessages";
 import Header from "./components/Header";
 import NotFound from "./components/NotFound";
-import CreateLoanTypes from "./components/CreateLoanTypes";
-import CreateAccountTypes from "./components/CreateAccountTypes";
+import CreateLoanTypes from "./components/createTypes/CreateLoanTypes";
+import CreateAccountTypes from "./components/createTypes/CreateAccountTypes";
 import HomeLoggIn from "./components/HomeLoggIn";
+import ViewAccount from "./components/viewLoanAndAccount/ViewAccount";
+import ViewLoan from "./components/viewLoanAndAccount/ViewLoan";
+import ViewCreditCard from "./components/viewLoanAndAccount/ViewCreditCard";
+import ViewDebitCard from "./components/viewLoanAndAccount/ViewDebitCard";
 // import ReactDOM from 'react-dom';
 
 function App() {
@@ -93,17 +96,28 @@ function App() {
           <Route path="/admin/home">
               {state.loggedIn?  <HomeLoggIn/>: <NotFound/>}
           </Route>
-
-          <Route path="/admin/CreateCardType">
-              {state.loggedIn? <CreateCardTypes/>: <NotFound/>}
-          </Route>
-
           <Route path="/admin/CreateLoanType">
               {state.loggedIn? <CreateLoanTypes/>: <NotFound/>}
           </Route>
 
           <Route path="/admin/CreateAccountType">
               {state.loggedIn? <CreateAccountTypes/>: <NotFound/>}
+          </Route>
+
+          <Route path="/admin/ViewAccount">
+              {state.loggedIn? <ViewAccount/>: <NotFound/>}
+          </Route>
+
+          <Route path="/admin/ViewCards/credit">
+              {state.loggedIn? <ViewCreditCard/>:  <NotFound/>}
+          </Route>
+
+          <Route path="/admin/ViewCards/debit">
+              {state.loggedIn? <ViewDebitCard/>: <NotFound/>}
+          </Route>
+
+          <Route path="/admin/ViewLoan">
+              {state.loggedIn? <ViewLoan/>: <NotFound/>}
           </Route>
 
 

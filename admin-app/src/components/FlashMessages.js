@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 
 function FlashMessages(props) {
     return (
+        <div id="top-message" className="container">
         <div className="floating-alerts">
             {props.messages.map((msg, index) => {
                 return (
@@ -10,6 +11,7 @@ function FlashMessages(props) {
                     </div>
                 )
             })}
+        </div>
         </div>
     )
 }
