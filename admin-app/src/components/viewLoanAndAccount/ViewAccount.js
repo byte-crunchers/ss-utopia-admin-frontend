@@ -69,11 +69,28 @@ function ViewAccount(){
 
 
             {
+                label: "Balance",
+                field: "balance",
+                sort: "asc",
+                width: 150,
+            },
+
+
+            {
                 label: "Annual Fee",
                 field: "annual_fee",
                 sort: "asc",
                 width: 100,
             },
+
+
+            {
+                label: "Debt Interest",
+                field: "debt_interest",
+                sort: "asc",
+                width: 100,
+            },
+
             {
                 label: "saving Interest",
                 field: "saving_interest",
@@ -81,18 +98,7 @@ function ViewAccount(){
                 width: 150,
             },
 
-            {
-                label: "Balance",
-                field: "balance",
-                sort: "asc",
-                width: 150,
-            },
-            {
-                label: "Debt Interest",
-                field: "debt_interest",
-                sort: "asc",
-                width: 100,
-            },
+
         ],
         rows:state.account
 

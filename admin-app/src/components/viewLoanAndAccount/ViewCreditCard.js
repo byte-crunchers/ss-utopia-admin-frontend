@@ -67,12 +67,6 @@ function ViewCreditCard(){
 
     const data = {
         columns: [
-            {
-                label: "Card ID",
-                field: "id",
-                sort: "asc",
-                width: 150,
-            },
 
             {
                 label: "Card Number",

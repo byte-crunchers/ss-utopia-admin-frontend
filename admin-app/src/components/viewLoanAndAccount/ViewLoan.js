@@ -73,14 +73,12 @@ function ViewLoan(){
                 width: 150,
             },
 
-
             {
-                label: "Interest Rate",
-                field: "interest_rate",
+                label: "Monthly Payment",
+                field: "monthly_payment",
                 sort: "asc",
-                width: 100,
+                width: 150,
             },
-
 
 
             {
@@ -90,11 +88,12 @@ function ViewLoan(){
                 width: 150,
             },
 
+
             {
-                label: "Monthly Payment",
-                field: "monthly_payment",
+                label: "Interest Rate",
+                field: "interest_rate",
                 sort: "asc",
-                width: 150,
+                width: 100,
             },
 
             {
