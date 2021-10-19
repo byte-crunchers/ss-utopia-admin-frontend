@@ -21,6 +21,8 @@ import ViewAccount from "./components/viewLoanAndAccount/ViewAccount";
 import ViewLoan from "./components/viewLoanAndAccount/ViewLoan";
 import ViewCreditCard from "./components/viewLoanAndAccount/ViewCreditCard";
 import ViewDebitCard from "./components/viewLoanAndAccount/ViewDebitCard";
+import IncreaseCreditLimit from "./components/accountManage/IncreaseCreditLimit";
+import ManageAccount from "./components/accountManage/ManageAccount";
 // import ReactDOM from 'react-dom';
 
 function App() {
@@ -100,11 +102,19 @@ function App() {
               {state.loggedIn? <CreateLoanTypes/>: <NotFound/>}
           </Route>
 
+          <Route path="/admin/ManageAccounts">
+              {state.loggedIn? <ManageAccount/>: <NotFound/>}
+          </Route>
+
+          <Route path="/admin/IncreaseCreditLimit">
+              {state.loggedIn? <IncreaseCreditLimit/>: <NotFound/>}
+          </Route>
+
           <Route path="/admin/CreateAccountType">
               {state.loggedIn? <CreateAccountTypes/>: <NotFound/>}
           </Route>
 
-          <Route path="/admin/ViewAccount">
+          <Route path="/admin/ViewAccounts">
               {state.loggedIn? <ViewAccount/>: <NotFound/>}
           </Route>
 

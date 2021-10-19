@@ -106,34 +106,6 @@ function CreateLoanTypes(){
             )
     }
 
-    //
-    // function calculate() {
-    //     const amount = document.getElementById('principal');
-    //     const apr = document.getElementById('interestRate');
-    //     const yrs = document.getElementById('yrsTerms');
-    //
-    //
-    //
-    //
-    //     const principal = parseFloat(amount.value);
-    //     const interest = parseFloat(apr.value) / 100 / 12;
-    //     const payments = parseFloat(yrs.value) * 12;
-    //
-    //
-    //     const x = Math.pow(1 + interest, payments);
-    //     let installmentPayments = (principal * x * interest) / (x - 1);
-    //
-    //
-    //     if (isFinite(installmentPayments)){
-    //          installmentPayments = installmentPayments.toFixed(2)
-    //     }
-    //
-    //     document.getElementById('installmentPayments').value =  installmentPayments
-    //
-    // }
-
-
-
     return(
 
         <div className="card m-3">

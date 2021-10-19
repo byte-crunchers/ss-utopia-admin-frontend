@@ -643,3 +643,19 @@ textarea.tall-textarea {
   transform:translateX(-50%);
   top:10px;
 }
+
+.mid-left {
+  position: relative;
+  top: 40%;
+  left: 16px;
+  transform: translateY(-10%);
+}
+
+/*.anybutton {*/
+/*  top:11%;*/
+/*  left:55%;*/
+/*  width:100px;*/
+/*  height:40px;*/
+/*  position: absolute;*/
+/*  z-index: 2;*/
+/*}*/
