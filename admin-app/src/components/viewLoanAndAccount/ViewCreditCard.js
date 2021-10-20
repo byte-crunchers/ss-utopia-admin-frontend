@@ -134,11 +134,13 @@ function ViewCreditCard(){
 
     return(
         <div>
-            <h1>Credit Cards Information</h1>
+            <h1 className="text-mid-left">Credit Cards Information</h1>
 
             <br/> <br/>
 
-            <MDBDataTable striped bordered small data={data} />
+            <MDBDataTable  striped
+                           bordered
+                           hover data={data} />
         </div>
     )
 

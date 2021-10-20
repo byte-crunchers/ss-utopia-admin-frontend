@@ -102,12 +102,17 @@ function IncreaseCreditLimit(){
 
                             <label >Credit Card Number </label>
                             {/*<div className="form-inline">*/}
+
                             <input  name="cardNum" type="text" {...register('cardNum')} placeholder="Enter a Credit card number (required)" className={`form-control ${errors.cardNum ? 'is-invalid' : ''}`} />
                             <div className="invalid-feedback">{errors.cardNum?.message}</div>
 
-                            <button className="btn btn-light  mr-1" type="submit"  onClick={handleSubmit(onSubmit) }>Check current limit</button>
-                            {showText && <div className="d-inline-block">Current limit: $ {showLimit}  </div> }
 
+                            <div className="flex-parent jc-center">
+
+                            <button className="btn btn-light " type="submit"  onClick={handleSubmit(onSubmit) }>Check current limit</button>
+                            {showText && <div  className="text1-mid-left">Current limit: $ {showLimit}  </div> }
+
+                        </div>
                         </div>
 
                         <div className="form-group col-3">

@@ -114,7 +114,7 @@ function App() {
               {state.loggedIn? <CreateAccountTypes/>: <NotFound/>}
           </Route>
 
-          <Route path="/admin/ViewAccounts">
+          <Route path="/admin/ViewAccount">
               {state.loggedIn? <ViewAccount/>: <NotFound/>}
           </Route>
 

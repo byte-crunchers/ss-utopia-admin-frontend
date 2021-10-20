@@ -110,11 +110,13 @@ function ViewLoan(){
     };
     return(
         <div>
-            <h1>Loans Information</h1>
+            <h1 className="text-mid-left">Loans Information</h1>
 
             <br/> <br/>
 
-            <MDBDataTable striped bordered small data={data} />
+            <MDBDataTable striped
+                          bordered
+                          hover data={data} />
 
         </div>
     )
