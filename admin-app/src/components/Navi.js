@@ -42,7 +42,7 @@ function Navi(props){
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="/admin/ViewCards/debit">View Debit Cards </NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="/admin/ViewCards/increasecreditlimit">Increase Credit Limit </NavDropdown.Item>
+                        <NavDropdown.Item href="/admin/UpdateCreditLimit">Update Credit Limit </NavDropdown.Item>
                     </NavDropdown>
 
 

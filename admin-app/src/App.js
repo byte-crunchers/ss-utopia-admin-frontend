@@ -106,7 +106,7 @@ function App() {
               {state.loggedIn? <ManageAccount/>: <NotFound/>}
           </Route>
 
-          <Route path="/admin/IncreaseCreditLimit">
+          <Route path="/admin/UpdateCreditLimit">
               {state.loggedIn? <IncreaseCreditLimit/>: <NotFound/>}
           </Route>
 

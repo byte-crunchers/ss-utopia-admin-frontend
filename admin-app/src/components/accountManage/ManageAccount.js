@@ -43,7 +43,7 @@ function ManageAccount(){
             .catch((error) => {
                     if(error.toString()==='Error: Request failed with status code 500')
                     {
-                        appDispatch({ type: "flashErrorMessages", value: `Sorry, a account with id ${data.id} has been deleted or does not exist.` })
+                        appDispatch({ type: "flashErrorMessages", value: `Sorry, account with id ${data.id} has been deleted or does not exist.` })
 
                     }else if(error.toString()==='Error: Request failed with status code 403')
                     {
@@ -72,7 +72,7 @@ function ManageAccount(){
 
             (response) => {
                 if(response.status ===204){
-                    appDispatch({ type: "flashMessage", value: `You suspended a account with id ${data.id} successfully.`} )
+                    appDispatch({ type: "flashMessage", value: `You suspended account with id ${data.id} successfully.`} )
                     console.log("account was suspended.")
 
                 }
@@ -80,7 +80,7 @@ function ManageAccount(){
             .catch((error) => {
                     if(error.toString()==='Error: Request failed with status code 500')
                     {
-                        appDispatch({ type: "flashErrorMessages", value: `Sorry, a account with id ${data.id} already suspended or does not exist.` })
+                        appDispatch({ type: "flashErrorMessages", value: `Sorry, account with id ${data.id} already suspended or does not exist.` })
 
                     }else if(error.toString()==='Error: Request failed with status code 403')
                     {
