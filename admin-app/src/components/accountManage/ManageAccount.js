@@ -53,12 +53,6 @@ function ManageAccount(){
             )
     }
 
-
-
-    // integrated  email confirmation function with account registration
-    //
-
-
     function onSubmitS(data) {
 
         if (!window.confirm('Are you sure to suspend this account?')) return
