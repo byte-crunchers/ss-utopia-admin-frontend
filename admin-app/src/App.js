@@ -17,6 +17,7 @@ import NotFound from "./components/NotFound";
 import CreateLoanTypes from "./components/createTypes/CreateLoanTypes";
 import CreateAccountTypes from "./components/createTypes/CreateAccountTypes";
 import HomeLoggIn from "./components/HomeLoggIn";
+import EditAccount from "./components/editLoanAndAccount/EditAccount";
 import ViewAccount from "./components/viewLoanAndAccount/ViewAccount";
 import ViewLoan from "./components/viewLoanAndAccount/ViewLoan";
 import ViewCreditCard from "./components/viewLoanAndAccount/ViewCreditCard";
@@ -106,6 +107,10 @@ function App() {
 
           <Route path="/admin/ViewAccount">
               {state.loggedIn? <ViewAccount/>: <NotFound/>}
+          </Route>
+
+          <Route path="/admin/EditAccount">
+              {state.loggedIn? <EditAccount/>: <NotFound/>}
           </Route>
 
           <Route path="/admin/ViewCards/credit">

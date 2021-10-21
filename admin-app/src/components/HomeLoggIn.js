@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useContext} from "react"
+import Background from '../static/home_page.png'
 
 function HomeGuest(props){
     return(
-        <div>
-            <h1>
-                Admin Home Page
-            </h1>
+        <div className="homePageDiv">
+            
+            <img className="homePageImg" src={Background} />
+
         </div>
     )
 }
