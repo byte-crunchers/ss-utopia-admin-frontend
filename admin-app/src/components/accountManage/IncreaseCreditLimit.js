@@ -50,8 +50,10 @@ function IncreaseCreditLimit(){
                 }
             })
             .catch((error) => {
+
                     if(error.toString()==='Error: Request failed with status code 500')
                     {
+                        setShowText(false);
                         appDispatch({ type: "flashErrorMessages", value: `Sorry, Credit card(${data.cardNum}) does not exist.` })
 
                     }else if(error.toString()==='Error: Request failed with status code 403')

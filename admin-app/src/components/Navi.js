@@ -31,7 +31,7 @@ function Navi(props){
                     <NavDropdown title="Account  ">
                         <NavDropdown.Item href="/admin/ViewAccount">View Accounts</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="/admin/ManageAccounts">Manage Accounts</NavDropdown.Item>
+                        <NavDropdown.Item href="/admin/ManageAccounts">Suspend&Delete Accounts</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="/admin/CreateAccountType">Create New Account Type</NavDropdown.Item>
                     </NavDropdown>
