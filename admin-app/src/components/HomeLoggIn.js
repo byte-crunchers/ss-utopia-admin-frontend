@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext} from "react"
-import Background from '../static/home_page.png'
+import Background from '../static/home_page.jpg'
 
 function HomeGuest(props){
     return(

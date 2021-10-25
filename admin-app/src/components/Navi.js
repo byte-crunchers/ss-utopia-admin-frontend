@@ -36,13 +36,11 @@ function Navi(props){
                         <NavDropdown.Item as={Link} to="/admin/CreateAccountType">Create New Account Type</NavDropdown.Item>
                     </NavDropdown>
 
-
                     <NavDropdown title="Card  ">
                         <NavDropdown.Item as={Link} to="/admin/ViewCards/credit">View Credit Cards </NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item as={Link} to="/admin/ViewCards/debit">View Debit Cards </NavDropdown.Item>
                     </NavDropdown>
-
 
                     <NavDropdown title="Loan  ">
                         <NavDropdown.Item as={Link} to="/admin/ViewLoan">View Loans</NavDropdown.Item>
@@ -50,12 +48,22 @@ function Navi(props){
                         <NavDropdown.Item as={Link} to="/admin/CreateLoanType">Create New Loan Type</NavDropdown.Item>
                     </NavDropdown>
 
-
                 </Nav>
             </Navbar.Collapse>
-            <button onClick={handleLogout}  className="btn btn-sm btn-secondary">
-                Sign Out
-            </button>
+
+            <div className="profileDiv">
+                <Nav>
+                    <NavDropdown title="Profile">
+                        <NavDropdown.Item as={Link} to="/">Edit Profile</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item onClick={handleLogout}>Sign Out</NavDropdown.Item>
+                    </NavDropdown>
+
+                </Nav>
+            </div>
+
+            {/* <button onClick={handleLogout}  className="btn btn-sm btn-secondary">Sign Out</button> */}
+
         </Navbar>
 
     </div>

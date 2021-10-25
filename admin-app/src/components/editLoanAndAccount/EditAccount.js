@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import 'bootstrap/dist/css/bootstrap.css'
 import DispatchContext from "../../DispatchContext"
@@ -14,6 +14,8 @@ import BasicCredit from '../../static/basic_credit.png'
 import UtopiaDebit from '../../static/utopia_debit.png'
 import PlusCredit from '../../static/plus_credit.png'
 import BlankCard from '../../static/blank_card.png'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function EditAccountDetails() {
 
@@ -64,11 +66,11 @@ function EditAccountDetails() {
             .nullable(false)
             .transform((v, o) => o === '' ? null : v) ,
 
-        credit_limit: Yup.number()
-            .typeError("Valid number is required.")
-            .min(0, "Number must be positive.")
-            .nullable(false)
-            .transform((v, o) => o === '' ? null : v),
+        // credit_limit: Yup.number()
+        //     .typeError("Valid number is required.")
+        //     .min(0, "Number must be positive.")
+        //     .nullable(false)
+        //     .transform((v, o) => o === '' ? null : v),
 
         debt_interest: Yup.number()
             .typeError("Valid number is required.")
@@ -91,7 +93,7 @@ function EditAccountDetails() {
     const formOptions = { resolver: yupResolver(validationSchema) };
 
 
-    const { register, handleSubmit, formState, setValue } = useForm(formOptions);
+    const { control, register, handleSubmit, formState, setValue } = useForm(formOptions);
     const { errors } = formState;
 
     function onSubmit(data) {
@@ -130,8 +132,9 @@ function EditAccountDetails() {
             setValue('id', "");
             setValue('payment_due', "");
             setValue('balance', "");
-            setValue('credit_limit', "");
+            // setValue('credit_limit', "");
             setValue('debt_interest', "");
+            setValue('due_date', "");
             setValue('confirmed', false);
             setValue('approved', false);
             setValue('active', false);
@@ -153,14 +156,16 @@ function EditAccountDetails() {
         setValue('balance', a.balance);
         if(a.account_type.includes('Debit')) {
             //overwrite any test values with 0
-            setValue('credit_limit', 0);
+            // setValue('credit_limit', 0);
             setValue('debt_interest', 0);
             setValue('payment_due', 0);
+            setValue('due_date', "");
         }
         else {
-            setValue('credit_limit', a.credit_limit);
+            // setValue('credit_limit', a.credit_limit);
             setValue('debt_interest', a.debt_interest);
             setValue('payment_due', a.payment_due);
+            setValue('due_date', new Date(a.due_date));
         }
         setValue('confirmed', a.confirmed);
         setValue('approved', a.approved);
@@ -229,11 +234,11 @@ function EditAccountDetails() {
                             <div className="invalid-feedback">{errors.balance?.message}</div>
                         </div>
 
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label>Credit Limit $</label>
                             <input name="credit_limit" type="text" {...register('credit_limit')} readOnly={state.isDebit} className={`form-control ${errors.credit_limit ? 'is-invalid' : ''}`} />
                             <div className="invalid-feedback">{errors.credit_limit?.message}</div>
-                        </div>
+                        </div> */}
                         <div className="form-group">
                             <label>Monthly Interest Rate %</label>
                             <input name="debt_interest" type="text" {...register('debt_interest')} readOnly={state.isDebit} className={`form-control ${errors.debt_interest ? 'is-invalid' : ''}`} />
@@ -244,6 +249,14 @@ function EditAccountDetails() {
                             <label>Payment Due $</label>
                             <input name="payment_due" type="text" {...register('payment_due')} readOnly={state.isDebit} className={`form-control ${errors.payment_due ? 'is-invalid' : ''}`} />
                             <div className="invalid-feedback">{errors.payment_due?.message}</div>
+                        </div>
+
+                        <div className="form-group">
+                            <label>Due Date</label>
+                            <Controller control={control} name='due_date' render={({ field }) => (
+                                <DatePicker placeholderText='' className="dateDiv" readOnly={state.isDebit} onChange={(date) => field.onChange(date)} selected={field.value} />
+                                )}
+                            />
                         </div>
 
                         <div className="form-group">
@@ -267,7 +280,7 @@ function EditAccountDetails() {
                         <div className="form-group">&nbsp;</div>
 
                         <div className="form-group">
-                            <button type="submit" disabled={!state.enableSubmit} className="btn btn-primary mr-1">Submit</button>
+                            <button type="submit" disabled={!state.enableSubmit} className="btn btn-primary mr-1">Save Changes</button>
                         </div>
                     </form>
                 </div>

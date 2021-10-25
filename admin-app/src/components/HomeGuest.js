@@ -44,7 +44,12 @@ function HomeGuest(props) {
         const api = process.env.REACT_APP_LOGGIN_AUTH_URL;
 
         // alert(api)
-        let user = JSON.stringify({ "username": `${data.username}` , "password":`${data.password}` }, null, 4)
+        let user = JSON.stringify({ 
+            "username": `${data.username}`, 
+            "password":`${data.password}`,
+            "portal": 'admin'
+        }, null, 4)
+
         try {
             const response = await Axios.post(api, user)
 

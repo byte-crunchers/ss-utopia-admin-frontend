@@ -664,7 +664,7 @@ textarea.tall-textarea {
 }
 
 .customSelector{
-    width: 300px;
+    width: 100%;
     height: 40px;
 }
 
@@ -699,4 +699,17 @@ textarea.tall-textarea {
     position: absolute;
     top: 110px;
     left: 30px;
+}
+
+.react-datepicker-popper {
+    z-index: 9999 !important;
+}
+
+.profileDiv{
+    width: 150px;
+} 
+
+.dateDiv{
+    width: 100%;
+    height: 35px;
 }
