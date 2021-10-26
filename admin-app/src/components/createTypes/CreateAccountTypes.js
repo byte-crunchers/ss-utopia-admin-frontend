@@ -144,8 +144,10 @@ function CreateAccountTypes(){
                         </div>
 
                     <div className="form-group">
+                        <div className=" mid-left">
                         <button type="submit"  className="btn btn-primary mr-1">Submit</button>
                         <button className="btn btn-warning " onClick={() => reset()} >Reset</button>
+                    </div>
                     </div>
                 </form>
             </div>

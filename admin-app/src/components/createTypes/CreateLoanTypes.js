@@ -22,8 +22,8 @@ function CreateLoanTypes(){
             .test('alphabets', 'Account Name must only contain alphabets !', (value) => {
                 return /^[a-zA-Z ]+$/.test(value);
             }),
-        isSecured: Yup.string()
-            .required('Secured attribute is required'),
+        // isSecured: Yup.string()
+        //     .required('Secured attribute is required'),
 
 
         lateFee: Yup.number()
@@ -119,15 +119,15 @@ function CreateLoanTypes(){
                             <div className="invalid-feedback">{errors.id?.message}</div>
                         </div>
 
-                        <div className="form-group col-3">
-                            <label >Secured&nbsp;&nbsp;</label>
-                            <select   name="isSecured" {...register('isSecured')} className={`form-control ${errors.isSecured ? 'is-invalid' : ''}`}>
-                                <option value="" selected disabled>Please select a loan security type (required)</option>
-                                <option value="True">True</option>
-                                <option value="False">False</option>
-                            </select>
-                            <div className="invalid-feedback">{errors.isSecured?.message}</div>
-                        </div>
+                        {/*<div className="form-group col-3">*/}
+                        {/*    <label >Secured&nbsp;&nbsp;</label>*/}
+                        {/*    <select   name="isSecured" {...register('isSecured')} className={`form-control ${errors.isSecured ? 'is-invalid' : ''}`}>*/}
+                        {/*        <option value="" selected disabled>Please select a loan security type (required)</option>*/}
+                        {/*        <option value="True">True</option>*/}
+                        {/*        <option value="False">False</option>*/}
+                        {/*    </select>*/}
+                        {/*    <div className="invalid-feedback">{errors.isSecured?.message}</div>*/}
+                        {/*</div>*/}
 
 
 
@@ -166,8 +166,10 @@ function CreateLoanTypes(){
                     </div>
 
                     <div className="form-group">
+                        <div className=" mid-left">
                         <button type="submit"  className="btn btn-primary mr-1">Submit</button>
                         <button className="btn btn-warning " onClick={() => reset()} >Reset</button>
+                    </div>
                     </div>
                 </form>
             </div>
