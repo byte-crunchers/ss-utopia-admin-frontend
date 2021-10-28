@@ -50,6 +50,7 @@ function ViewDebitCard(){
 
 
     // if (state.isLoading)
+
     //    return (
     //
     //  <LoadingDotsIcon />
@@ -61,12 +62,7 @@ function ViewDebitCard(){
 
     const data = {
         columns: [
-            {
-                label: "Card ID",
-                field: "id",
-                sort: "asc",
-                width: 150,
-            },
+
 
             {
                 label: "Card Number",
@@ -125,11 +121,13 @@ function ViewDebitCard(){
 
     return(
         <div>
-            <h1>Debit Cards Information</h1>
+            <h1 className="text-mid-left">Debit Cards Information</h1>
 
             <br/> <br/>
 
-            <MDBDataTable striped bordered small data={data} />
+            <MDBDataTable  striped
+                           bordered
+                           hover data={data} />
         </div>
     )
 

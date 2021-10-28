@@ -67,12 +67,6 @@ function ViewCreditCard(){
 
     const data = {
         columns: [
-            {
-                label: "Card ID",
-                field: "id",
-                sort: "asc",
-                width: 150,
-            },
 
             {
                 label: "Card Number",
@@ -140,11 +134,13 @@ function ViewCreditCard(){
 
     return(
         <div>
-            <h1>Credit Cards Information</h1>
+            <h1 className="text-mid-left">Credit Cards Information</h1>
 
             <br/> <br/>
 
-            <MDBDataTable striped bordered small data={data} />
+            <MDBDataTable  striped
+                           bordered
+                           hover data={data} />
         </div>
     )
 

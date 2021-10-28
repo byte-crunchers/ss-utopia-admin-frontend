@@ -73,14 +73,12 @@ function ViewLoan(){
                 width: 150,
             },
 
-
             {
-                label: "Interest Rate",
-                field: "interest_rate",
+                label: "Monthly Payment",
+                field: "monthly_payment",
                 sort: "asc",
-                width: 100,
+                width: 150,
             },
-
 
 
             {
@@ -90,11 +88,12 @@ function ViewLoan(){
                 width: 150,
             },
 
+
             {
-                label: "Monthly Payment",
-                field: "monthly_payment",
+                label: "Interest Rate",
+                field: "interest_rate",
                 sort: "asc",
-                width: 150,
+                width: 100,
             },
 
             {
@@ -111,11 +110,13 @@ function ViewLoan(){
     };
     return(
         <div>
-            <h1>Loans Information</h1>
+            <h1 className="text-mid-left">Loans Information</h1>
 
             <br/> <br/>
 
-            <MDBDataTable striped bordered small data={data} />
+            <MDBDataTable striped
+                          bordered
+                          hover data={data} />
 
         </div>
     )

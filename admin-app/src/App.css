@@ -643,3 +643,44 @@ textarea.tall-textarea {
   transform:translateX(-50%);
   top:10px;
 }
+
+.mid-left {
+  position: relative;
+  top: 40%;
+  left: 16px;
+  transform: translateY(-10%);
+}
+
+.text-mid-left {
+  position: relative;
+  top: 40%;
+  left: 23px;
+  transform: translateY(45%);
+}
+
+.text1-mid-left {
+  position: relative;
+  top: 40%;
+  left: 23px;
+  transform: translateY(15%);
+}
+
+.flex-parent {
+  display: flex;
+}
+
+.jc-center {
+  justify-content: left;
+}
+
+button.margin-right {
+  margin-right: 10px;
+}
+/*.anybutton {*/
+/*  top:11%;*/
+/*  left:55%;*/
+/*  width:100px;*/
+/*  height:40px;*/
+/*  position: absolute;*/
+/*  z-index: 2;*/
+/*}*/

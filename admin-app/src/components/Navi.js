@@ -31,6 +31,8 @@ function Navi(props){
                     <NavDropdown title="Account  ">
                         <NavDropdown.Item href="/admin/ViewAccount">View Accounts</NavDropdown.Item>
                         <NavDropdown.Divider />
+                        <NavDropdown.Item href="/admin/ManageAccounts">Suspend&Delete Accounts</NavDropdown.Item>
+                        <NavDropdown.Divider />
                         <NavDropdown.Item href="/admin/CreateAccountType">Create New Account Type</NavDropdown.Item>
                     </NavDropdown>
 
@@ -39,6 +41,8 @@ function Navi(props){
                         <NavDropdown.Item href="/admin/ViewCards/credit">View Credit Cards </NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="/admin/ViewCards/debit">View Debit Cards </NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="/admin/UpdateCreditLimit">Update Credit Limit </NavDropdown.Item>
                     </NavDropdown>
 
 
