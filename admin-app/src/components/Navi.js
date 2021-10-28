@@ -48,6 +48,10 @@ function Navi(props){
                         <NavDropdown.Item as={Link} to="/admin/CreateLoanType">Create New Loan Type</NavDropdown.Item>
                     </NavDropdown>
 
+                    <NavDropdown title="Users  ">
+                        <NavDropdown.Item as={Link} to="/admin/ViewUsers">View Users</NavDropdown.Item>
+                    </NavDropdown>
+
                 </Nav>
             </Navbar.Collapse>
 

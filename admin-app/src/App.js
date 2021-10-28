@@ -22,6 +22,7 @@ import ViewAccount from "./components/viewLoanAndAccount/ViewAccount";
 import ViewLoan from "./components/viewLoanAndAccount/ViewLoan";
 import ViewCreditCard from "./components/viewLoanAndAccount/ViewCreditCard";
 import ViewDebitCard from "./components/viewLoanAndAccount/ViewDebitCard";
+import ViewUsers from "./components/viewLoanAndAccount/ViewUsers";
 // import ReactDOM from 'react-dom';
 
 function App() {
@@ -123,6 +124,10 @@ function App() {
 
           <Route path="/admin/ViewLoan">
               {state.loggedIn? <ViewLoan/>: <NotFound/>}
+          </Route>
+
+          <Route path="/admin/ViewUsers">
+              {state.loggedIn? <ViewUsers/>: <NotFound/>}
           </Route>
 
 
