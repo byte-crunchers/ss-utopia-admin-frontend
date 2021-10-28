@@ -4,6 +4,7 @@ import DispatchContext from "../DispatchContext"
 import StateContext from "../StateContext"
 import { withRouter } from "react-router-dom"
 import {Nav,Navbar,NavDropdown} from "react-bootstrap";
+import { Link } from 'react-router-dom'
 
 function Navi(props){
     const appDispatch = useContext(DispatchContext)
@@ -26,38 +27,50 @@ function Navi(props){
             <Navbar.Toggle className="coloring" />
             <Navbar.Collapse>
                 <Nav>
-                    <Nav.Link href="/admin/home">UtopiaAdmin</Nav.Link>
+                    <Nav.Link as={Link} to="/admin/home">UtopiaAdmin</Nav.Link>
 
                     <NavDropdown title="Account  ">
-                        <NavDropdown.Item href="/admin/ViewAccount">View Accounts</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/admin/ViewAccount">View Accounts</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/admin/EditAccount">Edit Accounts</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="/admin/ManageAccounts">Suspend&Delete Accounts</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/admin/ManageAccounts">Suspend&Delete Accounts</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="/admin/CreateAccountType">Create New Account Type</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/admin/CreateAccountType">Create New Account Type</NavDropdown.Item>
                     </NavDropdown>
-
 
                     <NavDropdown title="Card  ">
-                        <NavDropdown.Item href="/admin/ViewCards/credit">View Credit Cards </NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/admin/ViewCards/credit">View Credit Cards </NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/admin/ViewCards/debit">View Debit Cards </NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="/admin/ViewCards/debit">View Debit Cards </NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="/admin/UpdateCreditLimit">Update Credit Limit </NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/admin/UpdateCreditLimit">Update Credit Limit </NavDropdown.Item>
                     </NavDropdown>
-
 
                     <NavDropdown title="Loan  ">
-                        <NavDropdown.Item href="/admin/ViewLoan">View Loans</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/admin/ViewLoan">View Loans</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="/admin/CreateLoanType">Create New Loan Type</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/admin/CreateLoanType">Create New Loan Type</NavDropdown.Item>
                     </NavDropdown>
 
+                    <NavDropdown title="Users  ">
+                        <NavDropdown.Item as={Link} to="/admin/ViewUsers">View Users</NavDropdown.Item>
+                    </NavDropdown>
 
                 </Nav>
             </Navbar.Collapse>
-            <button onClick={handleLogout}  className="btn btn-sm btn-secondary">
-                Sign Out
-            </button>
+
+            <div className="profileDiv">
+                <Nav>
+                    <NavDropdown title="Profile">
+                        <NavDropdown.Item as={Link} to="/">Edit Profile</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item onClick={handleLogout}>Sign Out</NavDropdown.Item>
+                    </NavDropdown>
+
+                </Nav>
+            </div>
+
+            {/* <button onClick={handleLogout}  className="btn btn-sm btn-secondary">Sign Out</button> */}
+
         </Navbar>
 
     </div>

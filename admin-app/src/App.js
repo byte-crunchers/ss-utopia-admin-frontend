@@ -17,10 +17,12 @@ import NotFound from "./components/NotFound";
 import CreateLoanTypes from "./components/createTypes/CreateLoanTypes";
 import CreateAccountTypes from "./components/createTypes/CreateAccountTypes";
 import HomeLoggIn from "./components/HomeLoggIn";
+import EditAccount from "./components/editLoanAndAccount/EditAccount";
 import ViewAccount from "./components/viewLoanAndAccount/ViewAccount";
 import ViewLoan from "./components/viewLoanAndAccount/ViewLoan";
 import ViewCreditCard from "./components/viewLoanAndAccount/ViewCreditCard";
 import ViewDebitCard from "./components/viewLoanAndAccount/ViewDebitCard";
+import ViewUsers from "./components/viewLoanAndAccount/ViewUsers";
 import IncreaseCreditLimit from "./components/accountManage/IncreaseCreditLimit";
 import ManageAccount from "./components/accountManage/ManageAccount";
 // import ReactDOM from 'react-dom';
@@ -118,6 +120,10 @@ function App() {
               {state.loggedIn? <ViewAccount/>: <NotFound/>}
           </Route>
 
+          <Route path="/admin/EditAccount">
+              {state.loggedIn? <EditAccount/>: <NotFound/>}
+          </Route>
+
           <Route path="/admin/ViewCards/credit">
               {state.loggedIn? <ViewCreditCard/>:  <NotFound/>}
           </Route>
@@ -128,6 +134,10 @@ function App() {
 
           <Route path="/admin/ViewLoan">
               {state.loggedIn? <ViewLoan/>: <NotFound/>}
+          </Route>
+
+          <Route path="/admin/ViewUsers">
+              {state.loggedIn? <ViewUsers/>: <NotFound/>}
           </Route>
 
 
