@@ -712,7 +712,7 @@ textarea.tall-textarea {
 
 .dateDiv{
     width: 100%;
-    height: 35px;
+    height: 38px;
 }
 
 .mid-left {
@@ -756,3 +756,6 @@ button.margin-right {
 /*  z-index: 2;*/
 /*}*/
 
+.customPadding {
+    margin: 10px;
+}
