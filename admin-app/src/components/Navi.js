@@ -52,7 +52,7 @@ function Navi(props){
                     </NavDropdown>
 
                     <NavDropdown title="Users  ">
-                        <NavDropdown.Item as={Link} to="/admin/ViewUsers">View Users</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/admin/ViewUsers">User Management</NavDropdown.Item>
                     </NavDropdown>
 
                 </Nav>
@@ -60,8 +60,8 @@ function Navi(props){
 
             <div className="profileDiv">
                 <Nav>
-                    <NavDropdown title="Profile">
-                        <NavDropdown.Item as={Link} to="/">Edit Profile</NavDropdown.Item>
+                    <NavDropdown title="&#128578; admin">
+                        <NavDropdown.Item href="/admin/EditUsers/?id=1">Edit Profile</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={handleLogout}>Sign Out</NavDropdown.Item>
                     </NavDropdown>
