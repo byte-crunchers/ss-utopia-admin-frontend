@@ -92,12 +92,6 @@ function ViewUsers(){
                 width: 150,
             },
             {
-                label: "SSN",
-                field: "ssn",
-                sort: "asc",
-                width: 150,
-            },
-            {
                 label: "Address",
                 field: "full_address",
                 sort: "asc",

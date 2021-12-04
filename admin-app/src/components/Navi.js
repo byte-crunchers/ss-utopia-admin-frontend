@@ -60,7 +60,7 @@ function Navi(props){
 
             <div className="profileDiv">
                 <Nav>
-                    <NavDropdown title="&#128578; admin">
+                    <NavDropdown title={appState.username}>
                         <NavDropdown.Item href="/admin/EditUsers/?id=1">Edit Profile</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={handleLogout}>Sign Out</NavDropdown.Item>

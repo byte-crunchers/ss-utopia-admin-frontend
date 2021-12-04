@@ -57,10 +57,11 @@ function HomeGuest(props) {
                 const header = response.headers
                 const token = header['authorization'];
                 appDispatch({ type: "login", data: token})
+                appDispatch({ type: "setUser", value: `${data.username}` })
                 appDispatch({ type: "flashMessage", value: "You have successfully logged in." })
                 // alert(token)
                 console.log(response)
-                console.log(appState.jwt)
+                // console.log(appState.jwt)
 
                 // localStorage.setItem("Token",token)
                 props.history.push("admin/home");
