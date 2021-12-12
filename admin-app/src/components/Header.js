@@ -20,6 +20,7 @@ function Header(props) {
         //         {appState.loggedIn ? <Navi /> : <HeaderBeforeLogin />}
         //     </div>
         // </header>
+        // <HeaderBeforeLogin />
         <div> {appState.loggedIn ? <Navi /> : <HeaderBeforeLogin />}</div>
     )
 }

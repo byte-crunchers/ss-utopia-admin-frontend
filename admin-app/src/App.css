@@ -708,7 +708,7 @@ textarea.tall-textarea {
 
 .profileDiv{
     width: 150px;
-} 
+}
 
 .dateDiv{
     width: 100%;
@@ -720,6 +720,19 @@ textarea.tall-textarea {
   top: 40%;
   left: 16px;
   transform: translateY(-10%);
+}
+
+
+.card-mid-left {
+  position: relative;
+  left: 170px;
+
+}
+
+.card-mid-right {
+  position: relative;
+  left: 240px;
+
 }
 
 .text-mid-left {
@@ -736,6 +749,21 @@ textarea.tall-textarea {
   transform: translateY(15%);
 }
 
+.card-down{
+  position: relative;
+  transform: translateY(50%);
+}
+
+.card-head-down{
+  position: relative;
+  transform: translateY(8%);
+}
+
+.card2-head-down{
+  position: relative;
+
+  transform: translateY(100%);
+}
 .flex-parent {
   display: flex;
 }
@@ -758,4 +786,17 @@ button.margin-right {
 
 .customPadding {
     margin: 10px;
+}
+
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;         /* Footer height */
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
 }
