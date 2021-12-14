@@ -23,7 +23,7 @@ function EditAccountDetails() {
     const appState = useContext(StateContext)
     const headers = {
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': `Bearer ${appState.jwt}`     
+        'Authorization': `Bearer ${appState.jwt}`
     }
 
     const [state, setState] = useImmer({
@@ -202,12 +202,12 @@ function EditAccountDetails() {
                 default:
                     draft.image = BlankCard;
                 }
-            
+
         });
     }
 
     return(
-        <div className="card m-3">
+        <div className="card m-3 ">
             <h5 className="card-header">UtopiaAdmin Edit Account Details</h5>
             <div className="card-body">
 

@@ -10,6 +10,7 @@
     "axios": "^0.21.3",
     "bootstrap": "^5.1.0",
     "dotenv": "^10.0.0",
+    "mdb-react-ui-kit": "^2.1.0",
     "mdbreact": "^5.1.0",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
@@ -29,7 +30,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "react-scripts build && aws s3 sync build/ s3://s3bucket-s3bucket-1mnyqra01h26g --acl public-read "
   },
   "eslintConfig": {
     "extends": [

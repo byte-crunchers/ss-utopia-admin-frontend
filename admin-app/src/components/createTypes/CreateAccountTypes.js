@@ -102,7 +102,7 @@ function CreateAccountTypes(){
     }
 
     return(
-        <div className="card m-3">
+        <div className="card m-3 ">
             <h5 className="card-header">UtopiaAdmin Create New Account Type</h5>
             <div className="card-body">
                 <form onSubmit={handleSubmit(onSubmit)}>
