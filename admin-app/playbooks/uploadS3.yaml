@@ -1,0 +1,30 @@
+---
+- name: upload admin portal to S3
+  hosts: localhost
+
+  vars:
+    bucket_name: 'ss-utopia-admin-frontend-s3-{{ BRANCH }}'
+    bucket_url: '{{ bucket_name }}.s3-website-{{ REGION }}.amazonaws.com'
+
+  tasks:
+    - name: Create empty bucket
+      amazon.aws.aws_s3:
+        bucket: '{{ bucket_name }}'
+        mode: create
+        permission: public-read
+        region: '{{ REGION }}'
+
+    - name: Configure s3 bucket to host static web content
+      s3_website:
+        name: '{{ bucket_name }}'
+        region: "{{ REGION }}"
+        state: present
+        suffix: index.html
+
+    - name: Pushing files in dist folder
+      community.aws.s3_sync:
+        bucket: '{{ bucket_name }}'
+        region: '{{ REGION }}'
+        file_root: ../build
+        include: '*'
+        permission: public-read
