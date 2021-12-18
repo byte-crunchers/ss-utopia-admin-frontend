@@ -55,6 +55,10 @@ function Navi(props){
                         <NavDropdown.Item as={Link} to="/admin/ViewUsers">User Management</NavDropdown.Item>
                     </NavDropdown>
 
+                    <NavDropdown title="System  ">
+                        <NavDropdown.Item as={Link} to="/admin/Health">Health Checks</NavDropdown.Item>
+                    </NavDropdown>
+
                 </Nav>
             </Navbar.Collapse>
 

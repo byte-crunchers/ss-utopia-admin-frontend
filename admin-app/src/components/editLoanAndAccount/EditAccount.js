@@ -154,7 +154,7 @@ function EditAccountDetails() {
         console.log('Select account: ' + a.fullName);
         setValue('id', a.id);
         setValue('balance', a.balance);
-        if(a.account_type.includes('Debit')) {
+        if(a.account_type.includes('Checking')) {
             //overwrite any test values with 0
             // setValue('credit_limit', 0);
             setValue('debt_interest', 0);
@@ -173,7 +173,7 @@ function EditAccountDetails() {
 
         setState(draft => {
             //set readonly fields
-            draft.isDebit = a.account_type.includes('Debit');
+            draft.isDebit = a.account_type.includes('Checking');
 
             //set card number & name
             draft.cardNum = formatCardNum(a.card_num.toString());
@@ -196,7 +196,7 @@ function EditAccountDetails() {
                 case "Foodies Credit":
                     draft.image = FoodiesCredit;
                     break;
-                case "Utopia Debit":
+                case "Checking":
                     draft.image = UtopiaDebit;
                     break;
                 default:

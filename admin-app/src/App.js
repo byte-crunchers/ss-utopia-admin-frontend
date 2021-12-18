@@ -26,6 +26,7 @@ import ViewUsers from "./components/viewLoanAndAccount/ViewUsers";
 import IncreaseCreditLimit from "./components/accountManage/IncreaseCreditLimit";
 import ManageAccount from "./components/accountManage/ManageAccount";
 import EditUsers from "./components/editLoanAndAccount/EditUsers";
+import Health from "./components/Health";
 // import ReactDOM from 'react-dom';
 
 function App() {
@@ -153,6 +154,9 @@ function App() {
               {state.loggedIn? <EditUsers/>: <NotFound/>}
           </Route>
 
+          <Route path="/admin/Health">
+              <Health/>
+          </Route>
 
       </Switch>
 
