@@ -23,7 +23,7 @@ function EditUserDetails() {
     const appState = useContext(StateContext)
     const headers = {
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': `Bearer ${appState.jwt}`     
+        'Authorization': `Bearer ${appState.jwt}`
     }
 
     const [state, setState] = useImmer({
@@ -35,7 +35,7 @@ function EditUserDetails() {
     })
 
     const api = process.env.REACT_APP_VIEW_USERS_URL;
-    
+
     //parse querystring
     const { search } = useLocation();
     const values = queryString.parse(search);
@@ -207,7 +207,7 @@ function EditUserDetails() {
     };
 
     return(
-        <div className="card m-3">
+        <div className="card m-3 ">
             <h5 className="card-header">UtopiaAdmin Edit User Details</h5>
             <div className="card-body">
 
@@ -248,7 +248,7 @@ function EditUserDetails() {
                             />
                             </p>
                         </div>
-                        
+
                         <div className="form-group">
                             <label>Date of Birth</label>
                             <Controller control={control} name='dob' render={({ field }) => (
@@ -259,7 +259,7 @@ function EditUserDetails() {
 
                         <div className="form-group">
                             <Controller control={control} name='phone' render={({ field }) => (
-                                <PhoneInput inputRef={register} value={state.phoneStr} country={'us'} required={true} 
+                                <PhoneInput inputRef={register} value={state.phoneStr} country={'us'} required={true}
                                 placeholder='' onChange={(ph) => field.onChange(ph)} />
                                 )}
                             />
@@ -311,7 +311,14 @@ function EditUserDetails() {
                             <div className="invalid-feedback">{errors.zip?.message}</div>
                         </div>
 
-                        
+                        <div className="form-group">
+                            <label>Date of Birth</label>
+                            <Controller control={control} name='dob' render={({ field }) => (
+                                <DatePicker placeholderText='' className="dateDiv" onChange={(date) => field.onChange(date)} selected={field.value} />
+                                )}
+                            />
+                        </div>
+
                     </div>
 
                 </form>
@@ -333,7 +340,7 @@ function EditUserDetails() {
                     <button form="myForm" key="submit" onClick={hideModal} className="btn btn-primary mr-1">Submit</button>
                     <button className="btn btn-secondary mr-1" onClick={hideModal}>Cancel</button>
                 </Modal.Footer>
-            </Modal>     
+            </Modal>
 
         </div>
 

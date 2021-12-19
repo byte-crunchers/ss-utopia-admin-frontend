@@ -66,6 +66,8 @@ function IncreaseCreditLimit(){
 
     function onSubmitU(data) {
 
+        if (!window.confirm(`Are you sure to update credit card(${data.cardNum})'s limit to ${data.creditLimit} dollars ?`)) return
+
         const headers = {
             'Content-Type': 'application/json; charset=UTF-8',
             'Authorization': `Bearer ${appState.jwt}`
@@ -100,7 +102,7 @@ function IncreaseCreditLimit(){
                 <div className="card-body ">
                     <form onSubmit={handleSubmit(onSubmitU)}>
 
-                        <div className="form-group col-3">
+                        <div className="form-group col-3 ">
 
                             <label >Credit Card Number </label>
                             {/*<div className="form-inline">*/}

@@ -108,7 +108,7 @@ function App() {
           </Route>
 
           <Route path="/admin/home">
-              {state.loggedIn?  <HomeLoggIn/>: <NotFound/>}
+              {state.loggedIn?  <HomeLoggIn/>: <HomeLoggIn/>}
           </Route>
           <Route path="/admin/CreateLoanType">
               {state.loggedIn? <CreateLoanTypes/>: <NotFound/>}
@@ -123,7 +123,7 @@ function App() {
           </Route>
 
           <Route path="/admin/CreateAccountType">
-              {state.loggedIn? <CreateAccountTypes/>: <NotFound/>}
+              {state.loggedIn? <CreateAccountTypes/>:  <NotFound/>}
           </Route>
 
           <Route path="/admin/ViewAccount">
