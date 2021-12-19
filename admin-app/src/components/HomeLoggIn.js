@@ -5,6 +5,7 @@ import {
     MDBCardTitle,
     MDBCardLink, MDBListGroup, MDBCardHeader, MDBCol, MDBRow, MDBCardImage, MDBCardText
 } from 'mdb-react-ui-kit';
+import { Link } from 'react-router-dom'
 
 function HomeGuest(props){
     return(
@@ -19,11 +20,11 @@ function HomeGuest(props){
                     <MDBCardHeader background='primary' className='text-white mb-3'>Account Management</MDBCardHeader>
                     <MDBCardBody>
                         <MDBListGroup flush>
-                            <MDBCardLink href='http://localhost:3000/admin/EditAccount'>Edit Account</MDBCardLink>
-                            <MDBCardLink href='http://localhost:3000/admin/ViewAccount'>View Existing Accounts</MDBCardLink>
-                            <MDBCardLink href='http://localhost:3000/admin/CreateAccountType'>Create Account Type</MDBCardLink>
+                            <Link to='/admin/EditAccount'>Edit Account</Link>
+                            <Link to='/admin/ViewAccount'>View Existing Accounts</Link>
+                            <Link to='/admin/CreateAccountType'>Create Account Type</Link>
 
-                            <MDBCardLink href='http://localhost:3000/admin/ManageAccounts'>Delete/Suspend Account</MDBCardLink>
+                            <Link to='/admin/ManageAccounts'>Delete/Suspend Account</Link>
                         </MDBListGroup>
 
                     </MDBCardBody>
@@ -35,10 +36,10 @@ function HomeGuest(props){
                                 <MDBCardHeader background='primary' className='text-white mb-3'>Card Management</MDBCardHeader>
                                 <MDBCardBody>
                                     <MDBListGroup flush>
-                                        <MDBCardLink href='http://localhost:3000/admin/UpdateCreditLimit'>Increase Credit Limit</MDBCardLink>
-                                        <MDBCardLink href='http://localhost:3000/admin/ViewCards/credit'>View Existing Credit Cards</MDBCardLink>
+                                        <Link to='/admin/UpdateCreditLimit'>Increase Credit Limit</Link>
+                                        <Link to="/admin/ViewCards/credit">View Existing Credit Cards</Link>
 
-                                        <MDBCardLink href='http://localhost:3000/admin/ViewCards/debit'>View Existing Debit Cards</MDBCardLink>
+                                        <Link to='/admin/ViewCards/debit'>View Existing Debit Cards</Link>
 
                                     </MDBListGroup>
                                 </MDBCardBody>
@@ -51,8 +52,8 @@ function HomeGuest(props){
                     <MDBCardBody>
 
                         <MDBListGroup flush>
-                            <MDBCardLink href='http://localhost:3000/admin/CreateLoanType'>Create Loan Type</MDBCardLink>
-                            <MDBCardLink href='http://localhost:3000/admin/ViewLoan'>View Existing Loans</MDBCardLink>
+                            <Link to='/admin/CreateLoanType'>Create Loan Type</Link>
+                            <Link to='/admin/ViewLoan'>View Existing Loans</Link>
 
                         </MDBListGroup>
                     </MDBCardBody>
@@ -65,8 +66,8 @@ function HomeGuest(props){
                     <MDBCardBody>
 
                         <MDBListGroup flush>
-                            <MDBCardLink href='http://localhost:3000/admin/ViewUsers'>Edit User</MDBCardLink>
-                            <MDBCardLink href='http://localhost:3000/admin/ViewUsers'>View Existing Users</MDBCardLink>
+                            <Link to='/admin/ViewUsers'>Edit User</Link>
+                            <Link to='/admin/ViewUsers'>View Existing Users</Link>
 
                         </MDBListGroup>
                     </MDBCardBody>
