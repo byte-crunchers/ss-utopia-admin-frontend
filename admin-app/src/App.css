@@ -788,6 +788,15 @@ button.margin-right {
     margin: 10px;
 }
 
+.healthCell {
+    padding-top: 15px;
+    padding-right: 40px;
+    font-weight: bold;
+}
+
+.healthIcon {
+    height: 30px;
+}
 
 .footer {
   position: absolute;

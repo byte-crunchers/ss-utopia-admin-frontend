@@ -62,7 +62,6 @@ function EditUserDetails() {
                     setValue('us_state', a.us_state);
                     setValue('zip', a.zip_str);
                     setValue('phone', a.phone);
-                    setValue('ssn', a.ssn);
                     setValue('dob', new Date(a.dob + "T00:00:00"));
                     setValue('confirmed', a.confirmed);
                     setValue('is_admin', a.is_admin);
@@ -138,12 +137,6 @@ function EditUserDetails() {
             .nullable(false)
             .transform((v, o) => o === '' ? null : v) ,
 
-        ssn: Yup.number()
-            .typeError("Valid SSN is required.")
-            .min(0, "Number must be positive.")
-            .nullable(false)
-            .transform((v, o) => o === '' ? null : v) ,
-
         confirmed: Yup.bool(),
 
         is_admin: Yup.bool(),
@@ -197,7 +190,6 @@ function EditUserDetails() {
             draft.modalText += "Email: " + getValues('email') + "\n";
             draft.modalText += "Address: " + getValues('street_address') + ", " + getValues('city') + ", " + getValues('us_state') + " " + getValues('zip') + "\n";
             draft.modalText += "Phone: " + getValues('phone') + "\n";
-            draft.modalText += "SSN: " + getValues('ssn') + "\n";
             draft.modalText += "Date of Birth: " + new Date(getValues('dob')).toLocaleDateString("en-US") + "\n";
             draft.modalText += "Administrator: " + getValues('is_admin') + "\n";
             draft.modalText += "User Active: " + getValues('active') + "\n";
@@ -258,9 +250,11 @@ function EditUserDetails() {
                         </div>
 
                         <div className="form-group">
-                            <label>SSN</label>
-                            <input name="ssn" type="text" {...register('ssn')} className={`form-control ${errors.ssn ? 'is-invalid' : ''}`} />
-                            <div className="invalid-feedback">{errors.ssn?.message}</div>
+                            <label>Date of Birth</label>
+                            <Controller control={control} name='dob' render={({ field }) => (
+                                <DatePicker placeholderText='' className="dateDiv" onChange={(date) => field.onChange(date)} selected={field.value} />
+                                )}
+                            />
                         </div>
 
                         <div className="form-group">

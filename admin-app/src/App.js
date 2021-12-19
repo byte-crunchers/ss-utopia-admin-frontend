@@ -26,6 +26,7 @@ import ViewUsers from "./components/viewLoanAndAccount/ViewUsers";
 import IncreaseCreditLimit from "./components/accountManage/IncreaseCreditLimit";
 import ManageAccount from "./components/accountManage/ManageAccount";
 import EditUsers from "./components/editLoanAndAccount/EditUsers";
+import Health from "./components/Health";
 // import ReactDOM from 'react-dom';
 
 function App() {
@@ -36,6 +37,8 @@ function App() {
         jwt:
            localStorage.getItem("Token"),
 
+        username:
+            localStorage.getItem("Username"),
 
         flashMessages: [],
         flashErrorMessages: [],
@@ -48,6 +51,13 @@ function App() {
             case "login":
                 draft.loggedIn = true
                 draft.jwt = action.data
+                console.log('Set jwt = ' + action.data)
+                return
+
+            case "setUser":
+                draft.username = action.value
+                localStorage.setItem("Username", action.value)
+                console.log('Set user = ' + action.value)
                 return
 
             case "logout":
@@ -71,10 +81,9 @@ function App() {
     useEffect(() => {
         if (state.loggedIn) {
             localStorage.setItem("Token", state.jwt.toString())
-
         } else {
             localStorage.removeItem("Token")
-
+            localStorage.removeItem("Username")
         }
     }, [state.loggedIn])
 
@@ -145,6 +154,9 @@ function App() {
               {state.loggedIn? <EditUsers/>: <NotFound/>}
           </Route>
 
+          <Route path="/admin/Health">
+              <Health/>
+          </Route>
 
       </Switch>
 
