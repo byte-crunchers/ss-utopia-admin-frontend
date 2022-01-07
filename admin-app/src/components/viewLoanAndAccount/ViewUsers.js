@@ -134,7 +134,7 @@ function ViewUsers(){
         setState(draft => {
             draft.showModal = true;
             draft.selectedId = id;
-            draft.modalText = "Selected User [" + id + "] - " + username;
+            draft.modalText = "Selected User: " + username;
         });
 
     }

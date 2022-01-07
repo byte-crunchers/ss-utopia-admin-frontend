@@ -16,6 +16,9 @@ import PlusCredit from '../../static/plus_credit.png'
 import BlankCard from '../../static/blank_card.png'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import queryString from 'query-string'
+import { useLocation } from 'react-router-dom'
+import Modal from "react-bootstrap/Modal";
 
 function EditAccountDetails() {
 
@@ -33,10 +36,18 @@ function EditAccountDetails() {
         image: BlankCard,
         cardNum: "0000 0000 0000 0000",
         name: "Name",
+        accountName: "",
         enableSubmit: false,
+        showModal: false,
+        modalText: "",
     })
 
     const api = process.env.REACT_APP_VIEW_ACCOUNT_URL;
+
+    //parse querystring
+    const { search } = useLocation();
+    const values = queryString.parse(search);
+    const accountId = values.id;
 
     useEffect(() => {
         async function fetchCard() {
@@ -45,6 +56,8 @@ function EditAccountDetails() {
                 setState(draft => {
                     draft.isLoading = false;
                     draft.account = response.data;
+                    const a = draft.account.filter(x => {return x.id == accountId})[0];
+                    loadAccountInfo(a);
                 })
 
                 console.log("Got all accounts.")
@@ -65,12 +78,6 @@ function EditAccountDetails() {
             .typeError("Valid number is required.")
             .nullable(false)
             .transform((v, o) => o === '' ? null : v) ,
-
-        // credit_limit: Yup.number()
-        //     .typeError("Valid number is required.")
-        //     .min(0, "Number must be positive.")
-        //     .nullable(false)
-        //     .transform((v, o) => o === '' ? null : v),
 
         debt_interest: Yup.number()
             .typeError("Valid number is required.")
@@ -93,7 +100,7 @@ function EditAccountDetails() {
     const formOptions = { resolver: yupResolver(validationSchema) };
 
 
-    const { control, register, handleSubmit, formState, setValue } = useForm(formOptions);
+    const { control, register, handleSubmit, formState, setValue, getValues } = useForm(formOptions);
     const { errors } = formState;
 
     function onSubmit(data) {
@@ -118,39 +125,41 @@ function EditAccountDetails() {
                 }
             })
     }
+    
+    //open confirmation modal
+    function openModal() {
+        console.log("Show modal.");
+        setState(draft => {
+            draft.showModal = true;
+            draft.modalText = "Account: " + draft.accountName + "\n";
+            draft.modalText += "Balance: " + getValues('balance') + "\n";
+            draft.modalText += "Interest rate: " + getValues('debt_interest') + "\n";
+            draft.modalText += "Payment due: " + getValues('payment_due') + "\n";
+            draft.modalText += "Due date: " + new Date(getValues('due_date')).toLocaleDateString("en-US") + "\n";
+            draft.modalText += "Confirmed: " + getValues('confirmed') + "\n";
+            draft.modalText += "Approved: " + getValues('approved') + "\n";
+            draft.modalText += "Active: " + getValues('active') + "\n";
+
+        });
+
+    }
+
+    //cancel confirmation modal
+    const hideModal = () => {
+        console.log("Cancelled modal.");
+        setState(draft => {
+            draft.showModal = false;
+        });
+    };
 
     //add spaces between 4-digit sections
     function formatCardNum(s){
         return s.substring(0, 4) + " " + s.substring(4, 8) + " " + s.substring(8, 12) + " " + s.substring(12);
     }
 
-    //selected a dropdown choice
-    function handleChange(event) {
-        //reset
-        if(event.target.value == 0)
-        {
-            setValue('id', "");
-            setValue('payment_due', "");
-            setValue('balance', "");
-            // setValue('credit_limit', "");
-            setValue('debt_interest', "");
-            setValue('due_date', "");
-            setValue('confirmed', false);
-            setValue('approved', false);
-            setValue('active', false);
-
-            setState(draft => {
-                draft.isDebit = false;
-                draft.cardNum = "0000 0000 0000 0000";
-                draft.name = "Name";
-                draft.image = BlankCard;
-                draft.enableSubmit = false;
-            });
-
-            return;
-        }
-
-        const a = state.account.filter(x => {return x.id == event.target.value})[0];
+    //load account info by id
+    function loadAccountInfo(a) {
+        
         console.log('Select account: ' + a.fullName);
         setValue('id', a.id);
         setValue('balance', a.balance);
@@ -178,6 +187,7 @@ function EditAccountDetails() {
             //set card number & name
             draft.cardNum = formatCardNum(a.card_num.toString());
             draft.name = a.fullName;
+            draft.accountName = a.fullName + " - " + a.account_type;
 
             //enable submit button
             draft.enableSubmit = true;
@@ -213,20 +223,13 @@ function EditAccountDetails() {
 
                 <div className="customColumn1">
 
-                    <label htmlFor="cars">Choose an account:</label><br />
-                    <select className="customSelector" name="cars" id="cars" onChange={handleChange}>
-                        <option key="0" value="0">Choose...</option>
-                        {state.account.map(a => (
-                            <option key={a.id} value={a.id}>
-                                {a.id}. {a.fullName} - {a.account_type}
-                            </option>
-                            ))}
-                    </select>
+                    <label htmlFor="cars">Account:</label><br />
 
-                    <br /><br />
+                    <h4>{state.accountName}</h4>
+
                     <br />
 
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form id="myForm" onSubmit={handleSubmit(onSubmit)}>
 
                         <div className="form-group">
                             <label>Balance $</label>
@@ -279,9 +282,6 @@ function EditAccountDetails() {
 
                         <div className="form-group">&nbsp;</div>
 
-                        <div className="form-group">
-                            <button type="submit" disabled={!state.enableSubmit} className="btn btn-primary mr-1">Save Changes</button>
-                        </div>
                     </form>
                 </div>
 
@@ -292,6 +292,25 @@ function EditAccountDetails() {
                 </div>
 
             </div>
+
+            <div className="card-footer">
+                <button onClick={openModal} className="btn btn-primary mr-1">Save Changes</button>
+
+            </div>
+            
+            <Modal show={state.showModal} onHide={hideModal}>
+                <Modal.Header><h3>Confirm Changes</h3></Modal.Header>
+                <Modal.Body>
+                    <pre>
+                    {state.modalText}
+                    </pre>
+                </Modal.Body>
+                <Modal.Footer>
+                    <button form="myForm" key="submit" onClick={hideModal} className="btn btn-primary mr-1">Submit</button>
+                    <button className="btn btn-secondary mr-1" onClick={hideModal}>Cancel</button>
+                </Modal.Footer>
+            </Modal>
+
         </div>
 
 

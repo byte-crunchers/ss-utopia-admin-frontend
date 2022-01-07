@@ -30,9 +30,7 @@ function Navi(props){
                     <Nav.Link as={Link} to="/admin/home">UtopiaAdmin</Nav.Link>
 
                     <NavDropdown title="Account  ">
-                        <NavDropdown.Item as={Link} to="/admin/ViewAccount">View Accounts</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item as={Link} to="/admin/EditAccount">Edit Accounts</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/admin/ViewAccount">Account Management</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item as={Link} to="/admin/ManageAccounts">Suspend&Delete Accounts</NavDropdown.Item>
                         <NavDropdown.Divider />
